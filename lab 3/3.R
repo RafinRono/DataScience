@@ -4,6 +4,12 @@ Y <- as.double(Y)
 print(X)
 print(Y)
 
+Z <- scan()
+Z
+
+W <- scan(what=" ")
+W
+
 carID <- c(1, 2, 3, 4)
 carName <- c("Ferrari", "Lamborghini", "McLaren", "Pagani")
 prodYear <- c(2004, 2019, 2015, 1998)
@@ -48,7 +54,7 @@ testDF <- edit(testDF)
 testDF
 write.csv(testDF, file="J:/R/Workspace/lab 3/test.csv")
 
-dataset <- read.csv("J:/R/Workspace/lab 3/Iris.csv", header = TRUE, stringsAsFactors = FALSE)
+dataset <- read.csv("J:/R/Workspace/lab 3/Iris.csv", header = TRUE, sep = ',')
 dataset
 
 dataset[10:20,]
