@@ -1,0 +1,655 @@
+Topic Modeling and Sentiment Analysis of News
+Articles: A Case Study on The Daily Star
+Md. Sayem Kabir
+
+Rafin Abrar Rono
+
+Tasnim Sultana Sintheia
+
+Department of Computer Science
+American International
+University-Bangladesh
+Dhaka, Bangladesh
+22-46985-1@student.aiub.edu
+
+Department of Computer Science
+American International
+University-Bangladesh
+Dhaka, Bangladesh
+22-47226-1@student.aiub.edu
+
+Department of Computer Science
+American International
+University-Bangladesh
+Dhaka, Bangladesh
+22-46039-1@student.aiub.edu
+
+Khushbu Alam Rahi
+Department of Computer Science
+American International
+University-Bangladesh
+Dhaka, Bangladesh
+22-46947-1@student.aiub.edu
+Abstract—As social media continues to shape public discourse,
+analyzing sentiment propagation within online interactions is
+crucial for understanding public opinion and digital communication dynamics. With the increasing influence of social media,
+understanding sentiment propagation within online discourse is
+essential for analyzing public opinion and digital interactions.
+This study integrates Latent Dirichlet Allocation (LDA) for
+topic modeling and employs sentiment classification techniques
+to analyze sentiment distribution across online discussions. The
+dataset, collected from The Daily Star, underwent rigorous
+preprocessing, including HTML tag removal, special character
+filtering, stopword elimination, tokenization, and lemmatization.
+The LDA model was optimized with Gibbs sampling, using
+Dirichlet priors (α, β) and tuned hyperparameters (k = 10
+topics, 2000 iterations, burn-in = 500), ensuring robust topic
+discovery. To evaluate model performance, multiple metrics were
+employed. The coherence score averaged 0.8271, indicating strong
+semantic consistency across topics, with Topic 9 achieving the
+highest coherence (208.10) and Topic 5 the lowest (151.78). The
+average perplexity score of 128.96 suggests the model effectively
+captures thematic structures, though some improvements in
+topic separation are possible. Additionally, topic diversity was
+0.3057, reflecting moderate variation across topics, while topic
+spread ranged from 0.0491 to 0.1411, highlighting differences
+in term distribution. Findings reveal that sentiment propagation
+is influenced by thematic structures and community dynamics,
+shaping online discourse. Despite effective topic-sentiment analysis, challenges such as data bias, contextual ambiguity, and realtime tracking remain. Future work should focus on improving
+multilingual sentiment detection, enhancing real-time monitoring,
+and integrating explainable AI for better interpretability. These
+insights have significant implications for marketing, political
+discourse, and digital sentiment analysis.
+Index Terms—Topic Modeling, The Daily Star, LDA, Tokenization, Lemmatization
+
+I. I NTRODUCTION
+Advanced computers handle digital platform data more
+rapidly than humans because they extract relevant data fast.
+Algorithms in natural language processing use both machine
+
+learning and unsupervised methods to find every major subject
+in many documents. [1] Statistical text analysis methods like
+LDA and NMF group words together to show the major subjects stored in clustered text datasets. Topic modeling displays
+excellent performance through automated topic detection and
+document structure creation replacing traditional human-made
+organizational methods [2]. Topic modeling helps healthcare
+research companies process medical papers faster to find
+disease patterns and treatme The evaluation of scientific studies leads to abstract development which guides educational
+content creation. Government employees analyze social media
+activities and voting data to develop their policies using
+the available information [3]. Topic modeling detects false
+information sources while making review and content analysis
+less difficult to produce valuable insights from data [4]. We
+use data transformation procedures to help decision-makers
+use today’s events to advance technological progress.
+In this data-filled time the exponential increase in text
+content from The Daily Star requires advanced techniques to
+produce useful findings. Manually reading through news articles becomes impossible to maintain as data volume increases
+along with the difficulty to keep results unbiased [5]. Our study
+creates an advanced topic modeling technology to recognize
+the core topics and pick out significant keywords automatically
+from large amounts of text information. Our system uses
+NLP technology to find related words and understand text to
+reveal important subjects in news content for fast organization
+and synopsis creation. The feature helps journalists spot news
+trends while letting public officials and readers get specific insights about trending subjects. The model shows great promise
+for all industries through its expandable use and exact results
+by helping companies track market patterns, researchers study
+discussions and institutions finding false information. The new
+research helps groups make better decisions with clear data
+while sharing useful information to everyone so we can see
+
+more insights from the many available data points.
+The main aim of this research creates a reliable keyword
+analysis system that finds main subjects and selects fitting
+words from documents. We will measure how well our system
+performs while processing substantial data parts and finding
+suitable topics. The work will move on to improve keyword
+detection by picking the most appropriate terms for each
+subject group. The test will prove the model’s practical use by
+processing real data from The Daily Star media platform with
+its present text analysis tasks including content compression
+and topic detection alongside defining new journalistic processes. Our goals unite to create better automated text analysis
+tools which convert large text databases into understandable
+insights easily.
+
+The research of Ahmed et al. (2022) [10] used LDA on
+3,000 economic articles in Pakistani English-language newspapers. The research examined vital topics including economic
+policies together with security preferences along with the
+textile sector as it revealed Pakistans economic coverage
+through media channels. The study’s foundation on article
+titles perhaps undermined contextual understanding which
+threatened the accuracy and depth of the derived topics. The
+process of manual preparation takes too much time and can
+insert subjective choices from human operators. This study
+fails to resolve the problem of finding the most suitable
+number of topics because the correct determination affects the
+final interpretation of results.
+III. M ETHODOLOGY
+
+II. L ITERATRUE R EVIEW
+Topic modeling serves as an essential analytical method for
+large textual data analysis specifically in news articles since
+its inception.
+This research analyzes Swedish newspaper articles about
+the coronavirus through Latent Dirichlet Allocation as investigated by Griciūtė et al. [6]. LDA analysis was applied to
+6515 Swedish newspaper articles about COVID-19 published
+between January 17, 2020 and March 13, 2021. Research
+pursued time-based modeling of topics in order to provide
+discourse insights about how discussions evolved throughout
+the pandemic period. Due to its regional focus on a particular
+language the research has potential restrictions in transferring
+its findings to different language and cultural situations.
+Xian et al. (2024) [7] utilized BERTopic with RoBERTabase for analyzing 24,827 news articles spanning January 2018
+to November 2023. Researchers observed time-related and
+location-based trends in generative AI-related topics throughout 24,827 news articles published between January 2018 and
+November 2023. The research failed to acknowledge possible
+biases that could affect the validity of its findings within the
+included news articles.
+Schäfer et al. (2024) [8] implemented BERTopic to analyze fake news in multiple languages occurring during the
+COVID-19 pandemic. The research analyzed German and
+English datasets through BERTopic to evaluate its capability
+in detecting dominant subject matters within fake news texts.
+The research analysis examined German and English language
+content although it did not review all possible multilingual fake
+news data.
+Han et al. (2023) [9] conducted a study examining 226
+online news articles between January 20, 2020, and April
+17, 2022 by applying LDA to detect main diabetes-related
+topics from the COVID-19 pandemic period. The research
+examined four main subjects which included ”COVID-19
+high-risk group” together with ”health management through
+digital healthcare.” Although useful the short size of the data
+collection can reduce its ability to be generalized to larger
+populations. Model performance might suffer when data contains sparsity. Different judgment perspectives in identifying
+and categorizing subjects will create incongruent results.
+
+A. Data Collection
+A data collection using the rvest package in R extracted
+data from The Daily Star homepage into a 163-row database
+containing article titles and their related content text. One
+row from the database displays each article while its title
+value resides in the header position alongside the full article
+text in the content field. The dataset collection date sets its
+size because news updates continuously evolve over time.
+The structured database supports textual analyses and natural language processing to reveal news trends by providing
+information about homepage content from a leading news
+organization [11].
+B. Dataset Preprocessing
+1) Remove HTML Tag: The preprocessing included a step
+where R used its gsub function to replace every HTML
+tag pattern (<.*?>) with an empty string for removing tags
+from scraped text data. The preprocessing step removed all
+HTML tags from the text material which created a clean
+content structure that supported better analysis quality [12].
+Tokenization along with document-term matrix generation and
+topic modeling required such step to process the unprocessed
+text.
+2) Remove Emoji and Special Character: The text data
+was prepared using the gsub function in R to eliminate
+emojis along with special characters by replacing all nonalphanumeric symbols and emojis with blank strings. This
+stage standardized the text content by removing all noise so
+it could be analyzed more precisely [13].
+3) Null value handling: Data preprocessing included the
+application of na.omit function in R for removing all rows
+with null or missing values. The preprocessing step kept the
+dataset consistent and error-free thus maintaining its integrity
+before text analysis and modeling procedures [14].
+4) Conjunction Remove: The removal of conjunctions including and, or and but along with standardization of ordinal
+indicators that convert 1st to first was achieved through
+preprocessing with stopwords and text replacement rules
+implemented via the tm package functions removeWords
+and gsub in R. The text processing step removed typical
+
+connecting words and standardized sequences with ordinal
+numbers to minimize text fluctuations [15].
+5) Remove numbers and punctuation: The preprocessing used the tm package in R to execute both
+removePunctuation and removeNumbers functions
+for purging punctuations and numbers from the textual information. A text cleaning process removed all punctuations and
+numbers from the textual content which focused the analysis
+on meaningful words [16]. Eliminating punctuation along with
+numbers proved fundamental for preparing the dataset to work
+properly in text analysis methods like tokenization and topic
+modeling.
+6) Remove Spaces: Before analysis the text data needed
+preprocessing which combined trimws function for
+whitestrip and gsub function for space consolidation. The
+processing stage standardized text presentation by removing
+all extra spaces and redundant white space in the data [17].
+7) Remove Stop Words: A process eliminated the stopwords
+the, is, and were because these terms add no meaningful
+contribution to text analysis. The removeWords function
+available in the tm package achieved this stop-word filtering operation in R. The elimination of stop words becomes
+essential when performing term frequency analysis or topic
+modeling because it allows investigators to focus on important
+terms by eliminating unimportant words [18].
+8) Tokenization: One essential procedure known as Tokenization processed the text data according to Eqn.1 to
+produce individualWords and tokens for text analysis. R’s
+strsplit function performed the text division by using
+delimiting marks such as characters between words and punctuation. Text conversion to structured format occurs through
+tokenization because it facilitates term frequency analysis and
+topic modeling processes [19]. Mathematical representation of
+tokenization appears as follows:
+T = {t1 , t2 , . . . , tn }
+
+(1)
+
+where T is the set of tokens and ti represents each individual
+token. This preprocessing step ensures the text is ready for
+downstream analysis.
+9) Lemmatization: The Eqn.2 included a lemmatization
+step which reduced words to their dictionary base forms
+such as running to run to maintain text analysis consistency.
+The normalization of words became possible through the
+R package textstem which implemented linguistic rules for
+word conversion. The text analysis processes including term
+frequency and topic modeling benefit from Lemmatization
+because it helps reduce inflectional forms which ultimately
+improves their accuracy [20]. Mathematical representation of
+lemmatization takes the form of:
+L(w) = lemma(w)
+
+(2)
+
+where L(w) is the lemmatized form of word w. This preprocessing step enhances the dataset’s quality by standardizing
+word forms.
+
+C. LDA
+Topic modeling utilized the Latent Dirichlet Allocation
+(LDA) model through parameters that included k = 10
+topics alongside iter = 2000 iterations, burn-in period of
+burnin = 500 and thin = 3 interval. Gibbs sampling carried out inference using Dirichlet priors for document-topic
+distribution through α and topic-word distribution through β.
+Computational efficiency and robust topic discovery relied on
+optimizing all selected parameters for the model [21].
+D. Gibbs Sampling
+Topic modeling utilized the Latent Dirichlet Allocation
+(LDA) model through parameters that included k = 10
+topics alongside iter = 2000 iterations, burn-in period of
+burnin = 500 and thin = 3 interval. Gibbs sampling carried out inference using Dirichlet priors for document-topic
+distribution through α and topic-word distribution through β.
+Computational efficiency and robust topic discovery relied on
+optimizing all selected parameters for the model [22].
+
+P (zi = k | z−i , w, α, β) ∝ P
+
+n−i
+k,wi + β
+
+−i
+w (nk,w + β)
+
+·P
+
+n−i
+d,k + α
+
+−i
+k (nd,k + α)
+
+(3)
+−i
+where n−i
+k,wi is the count of word wi in topic k, and nd,k
+is the count of topics k in document d, excluding the current
+assignment.
+E. Model Evaluation Parameters
+1) Cosine Coherence Test: Topic modeling evaluation relies
+on Cosine Coherence Test which computes topic semantic
+coherence by measuring term similarity inside topics. The
+computation of Cosine Coherence Test depends on term vector
+cosine similarity from a document-term matrix (DTM) which
+confirms that topic components frequently appear alongside
+one another while maintaining semantic associations. The
+Cosine Coherence Test allows users to evaluate the quality of
+LDA and similar models by assessing their topic interpretability through coherence measurement [23].
+Mathematically, cosine coherence for a pair of terms ti and
+tj is defined as:
+cosine(ti , tj ) =
+
+vti · vtj
+∥vti ∥∥vtj ∥
+
+(4)
+
+where vti and vtj are the term frequency vectors of ti and
+tj in the DTM. The overall coherence of a topic is the average
+pairwise cosine similarity of its top terms. This metric is
+needed to ensure that topics are not only statistically significant
+but also semantically meaningful.
+2) Perplexity Score: Probabilistic models including Latent
+Dirichlet Allocation (LDA) get assessed using perplexity to
+measure their ability in predicting new data points. A model
+demonstrates improved fit and generalization abilities when
+perplexity is reduced. The evaluation metric is widely applied
+in topic modeling to help users determine model complexity
+levels while optimizing predictive accuracy [24].
+
+Mathematically, perplexity is defined as:
+PM PNd
+
+w=1 log P (w | d)
+PM
+d=1 Nd
+
+d=1
+
+Perplexity(Dtest ) = exp −
+
+!
+
+(5)
+where Dtest is the test dataset, M is the number of documents, Nd is the number of words in document d, and
+P (w | d) is the probability of word w in document d as
+predicted by the model. Perplexity is needed to assess how
+well the model captures the underlying structure of the data
+and to avoid overfitting.
+3) Topic Diversity Test: Topic diversity stands as a quantitative assessment method that measures the distinctiveness of
+topics developed from a topic modeling process. This measure
+shows the share of distinct words which appear across separate
+topics thus preventing unnecessary topic or conceptual overlap.
+The strength of a model to identify diverse subject matter
+becomes possible because high topic diversity demonstrates its
+capability to detect various themes for interpretability analysis
+of LDA models [25].
+Mathematically, topic diversity is defined as:
+
+Topic Diversity =
+
+|
+
+K ×n
+
+w
+
+IV. R ESULTS
+A. Top Terms & Probabilities
+
+(6)
+
+where K is the number
+of topics, Topn (k) is the set of top
+SK
+n terms in topic k, and | k=1 Topn (k)| is the total number of
+unique terms across all topics. This metric is needed to ensure
+that the model produces diverse and non-repetitive topics,
+enhancing the interpretability and usefulness of the results.
+4) Topic Purity Test: Topic Purity represents a measurement approach for analyzing topic model homogeneity through
+evaluation of how well topics match distinct themes or concepts among their term content. Topic Purity represents an
+average of dominant terms in each topic which requires all
+members of a topic align to a single concept or theme [26].
+The quality assessment of LDA models depends on the Topic
+Purity metric which demonstrates the extent of semantic focus
+among model topics.
+Mathematically, topic purity for a topic k is defined as:
+Purity(k) = max P (w | k)
+
+|{d | argmaxk P (k | d) = k}|
+(9)
+M
+where M is the total number of documents, and P (k | d)
+is the probability of topic k in document d. The overall topic
+spreading is the distribution of Spreading(k) across all topics.
+This metric is needed to ensure that topics are not overly
+dominant or sparse, improving the model’s ability to represent
+diverse themes in the dataset.
+Spreading(k) =
+
+TABLE I: Top Term Probabilities for Each Topic
+
+SK
+
+k=1 Topn (k)|
+
+5) Topic Spreading Test: Topic Spreading represents an
+evaluation method that determines the distribution uniformity
+of topics between documents within topic modeling analysis. This measure determines the way topics spread through
+documents to verify whether each topic dominates a fair
+share of documents without concentrating in a small number
+of documents [27]. Even spreading represents a method to
+evaluate the balance and coverage of topics in models such
+as LDA because it demonstrates the model’s ability to detect
+diverse themes throughout the corpus.
+Mathematically, topic spreading for a topic k is defined as:
+
+(7)
+
+where P (w | k) is the probability of term w in topic k. The
+overall topic purity is the average purity across all topics:
+
+Topic
+Topic 1
+Topic 2
+Topic 3
+Topic 4
+Topic 5
+Topic 6
+Topic 7
+Topic 8
+Topic 9
+Topic 10
+
+Top Terms and Probabilities
+like (5.64), public (4.94), health (4.34)
+government (14.89), percent (11.00), year (8.40)
+people (7.97), student (7.39), adviser (4.71)
+work (6.91), new (6.13), law (6.07)
+war (4.83), return (4.74), people (4.23)
+game (9.36), good (6.02), win (5.16)
+bangladesh (17.04), market (6.05), international (4.75)
+trump (17.65), president (7.06), state (6.50)
+case (9.42), dhaka (8.08), court (7.66)
+police (15.04), incident (4.98), area (4.92)
+
+Tab.I Statistical evaluation shows that topics differ greatly
+in term probability where Topic 7 holds Bangladesh-related
+terms at 17.04 percent. The five-ticked topic about war terms
+maintains its balance in term probabilities compared to Topic
+7 with Bangladesh references and Topic 5. The standard
+deviation of topic probabilities measures term distribution
+spread where higher values show large diversity within topic
+relationships. A distribution of calculation results would let us
+find popular trends and detect related words across different
+subjects.
+
+K
+
+Topic Purity =
+
+1 X
+Purity(k)
+K
+
+(8)
+
+k=1
+
+where K is the number of topics. This metric is needed to
+ensure that topics are not overly broad or mixed, improving
+their interpretability and relevance for downstream tasks.
+
+Fig. 1: Important Terms for 3 topics
+
+B. coherence score
+The table results in Tab.II show how well the terms within
+each topic relate to other relevant terms. Higher level coherence shows that the main topic terms in each cluster strongly
+connect to each other to create a clearly defined subject area.
+Topic 9 stands out at 208.10 due to its high term correlation
+while Topic 5 shows lower correlation values at 151.78 across
+all nine topics. The terms in Topic 9 stand as the most closely
+connected group with a coherence score of 208.10 because
+they clearly define a single subject matter. Topic 5 displays
+151.78 coherence due to its diverse set of less related terms.
+There is a moderate connection between words across all
+documents since the findings averaged 0.8271 across all topics.
+TABLE II: Topic-wise Coherence Scores and Spread
+Topic
+Topic 1
+Topic 2
+Topic 3
+Topic 4
+Topic 5
+Topic 6
+Topic 7
+Topic 8
+Topic 9
+Topic 10
+
+Coherence Score
+192.28
+182.10
+204.86
+190.83
+151.78
+166.94
+194.60
+182.39
+208.10
+202.99
+
+Topic Spread
+0.0920
+0.1227
+0.1227
+0.0491
+0.0798
+0.1104
+0.0920
+0.0798
+0.1104
+0.1411
+
+D. Topic Diversity and Average Perplexity Analysis
+Our text contains moderately different topics which maintain distinct sections in content. Both topics explain many parts
+of the content but include similar keywords from other topics.
+The average perplexity score of 128.96 suggests that the
+model is reasonably effective in capturing the underlying
+structure of the dataset, though there may still be room for
+improvement in predicting content, particularly in complex
+or nuanced contexts. This value provides insight into how
+well the model generalizes across the different topics and how
+coherent the topics are in relation to the content they represent.
+V. C ONCLUSION
+Research examined how to study sentiment spread in online
+communities using both topic modeling and sentiment analysis methods. Using LDA for topic discovery and sentiment
+techniques this research found major conversation subjects
+alongside their linked emotional orientation. Digital interactions depend on how many topics are discussed plus the quality
+of the content and emotional feedback people provide. Our
+findings show sentiment sharing behaves differently among
+online groups depending on how much their members participate with each other.
+The tested method works well to detect sentiment patterns
+but still has three main limitations like biased data input, unclear context understanding and difficult model explanations.
+Future scientists should work on improving digital sentiment
+monitoring methods and multilingual sentiment recognition
+as well as researching enhanced deep learning models to
+produce more valid results. Our analysis needs better explanation because it lacks an actionable system that explains its
+outcomes more clearly. Studies of social sentiment patterns
+help marketers understand public opinion better while enabling
+political research plus monitoring of ticket thereviews.
+R EFERENCES
+
+Fig. 2: World Cloud for 3 topics
+
+C. Topic Spreading Analysis
+Tab.II shows the topic spread numbers that reveal how
+spread out or varied the terms are for each discovered topic.
+When topic terms appear far apart on the spread scale it shows
+that the topic explores a wide set of concepts. A narrow spread
+indicates the topic stays on target and its relevant terms stay
+grouped together within one distinct area.
+In this dataset, Topic 10 shows the highest diversity at
+0.1411 because its set of relevant terms expands more widely
+than other topics. The topic with narrowest term range is Topic
+4 since its terms have a spread of 0.0491. These four topics (2,
+3, 6, and 9) demonstrate average spread results which indicate
+their terms are distributed equally throughout those topics.
+
+[1] T. Hodel, “Supervised and unsupervised: approaches to machine learning
+for textual entities,” Digital Humanities Research— Volume 2, p. 157,
+2022.
+[2] S. Claus and M. Stella, “Natural language processing and cognitive
+networks identify uk insurers’ trends in investor day transcripts,” Future
+Internet, vol. 14, no. 10, p. 291, 2022.
+[3] A. Simonofski, J. Fink, and C. Burnay, “Supporting policy-making
+with social media and e-participation platforms data: A policy analytics
+framework,” Government Information Quarterly, vol. 38, no. 3, p.
+101590, 2021.
+[4] R. Churchill and L. Singh, “The evolution of topic modeling,” ACM
+Computing Surveys, vol. 54, no. 10s, pp. 1–35, 2022.
+[5] S. Moon, M.-Y. Kim, and D. Iacobucci, “Content analysis of fake
+consumer reviews by survey-based text categorization,” International
+Journal of Research in Marketing, vol. 38, no. 2, pp. 343–364, 2021.
+[6] B. Griciūtė, L. Han, and G. Nenadic, “Topic modelling of swedish
+newspaper articles about coronavirus: A case study using latent dirichlet
+allocation method,” arXiv preprint arXiv:2301.03029, 2023. [Online].
+Available: https://arxiv.org/abs/2301.03029
+[7] L. Xian, L. Li, Y. Xu, B. Z. Zhang, and L. Hemphill, “Landscape of
+generative ai in global news: Topics, sentiments, and spatiotemporal
+analysis,” arXiv preprint arXiv:2401.08899, 2024. [Online]. Available:
+https://arxiv.org/abs/2401.08899
+[8] K. Schäfer, J.-E. Choi, I. Vogel, and M. Steinebach, “Unveiling the
+potential of bertopic for multilingual fake news analysis—use case:
+Covid-19,” arXiv preprint arXiv:2407.08417, 2024. [Online]. Available:
+https://arxiv.org/abs/2407.08417
+
+[9] J.-W. Han, J. M. Kim, and H. Lee, “Topic modeling-based analysis of
+news keywords related to patients with diabetes during the covid-19
+pandemic,” Healthcare, vol. 11, no. 7, p. 957, 2023. [Online]. Available:
+https://www.mdpi.com/2227-9032/11/7/957
+[10] F. Ahmed, M. Nawaz, and A. Jadoon, “Topic modeling
+of the pakistani economy in english newspapers via
+latent dirichlet allocation (lda),” SAGE Open, vol. 12,
+no. 1, p. 21582440221079931, 2022. [Online]. Available:
+https://journals.sagepub.com/doi/full/10.1177/21582440221079931
+[11] K. Sharifani, M. Amini, Y. Akbari, and J. Aghajanzadeh Godarzi, “Operating machine learning across natural language processing techniques
+for improvement of fabricated news model,” International Journal of
+Science and Information System Research, vol. 12, no. 9, pp. 20–44,
+2022.
+[12] C. P. Chai, “Comparison of text preprocessing methods,” Natural Language Engineering, vol. 29, no. 3, pp. 509–553, 2023.
+[13] L. Hickman, S. Thapa, L. Tay, M. Cao, and P. Srinivasan, “Text
+preprocessing for text mining in organizational research: Review and
+recommendations,” Organizational Research Methods, vol. 25, no. 1,
+pp. 114–146, 2022.
+[14] M. Ranjan and A. Bansiya, “Data cleaning rules based on conditional
+functional dependency,” Research Journal of Engineering Technology
+and Medical Sciences (ISSN: 2582-6212), vol. 4, no. 02, 2021.
+[15] E. Ash and S. Hansen, “Text algorithms in economics,” Annual Review
+of Economics, vol. 15, no. 1, pp. 659–688, 2023.
+[16] C. P. Chai, “Comparison of text preprocessing methods,” Natural Language Engineering, vol. 29, no. 3, pp. 509–553, 2023.
+[17] N. Alanazi, E. Khan, and A. Gutub, “Efficient security and capacity
+techniques for arabic text steganography via engaging unicode standard
+encoding,” Multimedia Tools and Applications, vol. 80, pp. 1403–1431,
+2021.
+[18] B. A. H. Murshed, S. Mallappa, J. Abawajy, M. A. N. Saif, H. D. E. AlAriki, and H. M. Abdulwahab, “Short text topic modelling approaches
+in the context of big data: taxonomy, survey, and analysis,” Artificial
+Intelligence Review, vol. 56, no. 6, pp. 5133–5260, 2023.
+[19] A. Bagheri, A. Giachanou, P. Mosteiro, and S. Verberne, “Natural
+language processing and text mining (turning unstructured data into
+structured),” in Clinical Applications of Artificial Intelligence in RealWorld Data. Springer, 2023, pp. 69–93.
+[20] C. P. Chai, “Comparison of text preprocessing methods,” Natural Language Engineering, vol. 29, no. 3, pp. 509–553, 2023.
+[21] E. O. Abiodun, A. Alabdulatif, O. I. Abiodun, M. Alawida, A. Alabdulatif, and R. S. Alkhawaldeh, “A systematic review of emerging
+feature selection optimization methods for optimal text classification:
+the present state and prospective opportunities,” Neural Computing and
+Applications, vol. 33, no. 22, pp. 15 091–15 118, 2021.
+[22] ——, “A systematic review of emerging feature selection optimization
+methods for optimal text classification: the present state and prospective
+opportunities,” Neural Computing and Applications, vol. 33, no. 22, pp.
+15 091–15 118, 2021.
+[23] E. Rijcken, F. Scheepers, P. Mosteiro, K. Zervanou, M. Spruit, and
+U. Kaymak, “A comparative study of fuzzy topic models and lda in terms
+of interpretability,” in 2021 IEEE Symposium Series on Computational
+Intelligence (SSCI). IEEE, 2021, pp. 1–8.
+[24] R. Churchill and L. Singh, “The evolution of topic modeling,” ACM
+Computing Surveys, vol. 54, no. 10s, pp. 1–35, 2022.
+[25] M. Gillings and A. Hardie, “The interpretation of topic models for
+scholarly analysis: An evaluation and critique of current practice,”
+Digital Scholarship in the Humanities, vol. 38, no. 2, pp. 530–543, 2023.
+[26] M. A. Alam, D. Rooney, and M. Taylor, “From ego-systems to open
+innovation ecosystems: A process model of inter-firm openness,” Journal
+of Product Innovation Management, vol. 39, no. 2, pp. 177–201, 2022.
+[27] D. Maier, A. Waldherr, P. Miltner, G. Wiedemann, A. Niekler, A. Keinert, B. Pfetsch, G. Heyer, U. Reber, T. Häussler et al., “Applying lda
+topic modeling in communication research: Toward a valid and reliable
+methodology,” in Computational methods for communication science.
+Routledge, 2021, pp. 13–38.
+
+
